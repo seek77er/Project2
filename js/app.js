@@ -1,8 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-const allCards = ["fa fa-cat", "fa fa-cat", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-bomb", "fa fa-bomb",
-"fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-diamond", "fa fa-diamond"];
+const allCards = ["fa fa-cat", "fa fa-cube", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-bomb", "fa fa-bicycle",
+"fa fa-leaf", "fa fa-bolt", "fa fa-cube", "fa fa-cat", "fa fa-leaf", "fa fa-bolt", "fa fa-bicycle", "fa fa-bomb", "fa fa-diamond", "fa fa-paper-plane-o"];
 
 
 let clickedCards = [];
@@ -10,32 +10,36 @@ let clickedCards = [];
 const deck = document.querySelector(".deck")
 //create the cards
 
-  for (let i=0;i<16;i++) {
+for (let i=0;i<16;i++) {
     let makeCard = document.createElement("li");
     makeCard.className="card";
     makeCard.innerHTML = `<i class = “fa ${allCards[i]}”></i>`
     deck.appendChild(makeCard);
-    shuffle(allCards);
+}
+shuffle(allCards);
 
-//addEventListener
-    makeCard.addEventListener("click",function(){
-      if (clickedCards.length ===0){
-       makeCard.classList.add("open", "show");
-        clickedCards.push(this);
-      }
-      if (clickedCards.length ===1){
-        makeCard.classList.add("open", "show");
-        clickedCards.push(this);
-      }
-        if (this.innerHTML === clickedCards[0].innerHTML){
-          makeCard.classList.add("matched");
-          console.log("This is a match");
-        }
-      else
-        if (clickedCards.length ===2){
-        console.log ("This is not a match");
-      }
+document.addEventListener('click', clickingCards);
 
+function clickingCards(){
+const makeCard = document.getElementsByTagName('li')
+
+if (clickedCards.length ===0){
+    makeCard.classList.add("opwn", "show");
+    clickedCards.push(this);
+    }
+if (clickedCards.length ===1){
+    makeCard.classList.add("open", "show");
+    clickedCards.push(this);
+    }
+if (this.innerHTML === clickedCards[0].innerHTML){
+    makeCard.classList.add("matched");
+    console.log("This is a match");
+    }
+    else
+    if (clickedCards.length ===2){
+    console.log ("This is not a match");
+    }
+}
 
 
 
@@ -55,4 +59,3 @@ function shuffle(array) {
 
     return array;
 }
-)}
