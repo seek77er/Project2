@@ -1,8 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-const allCards = ["fa fa-cat", "fa fa-cube", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-bomb", "fa fa-bicycle",
-"fa fa-leaf", "fa fa-bolt", "fa fa-cube", "fa fa-cat", "fa fa-leaf", "fa fa-bolt", "fa fa-bicycle", "fa fa-bomb", "fa fa-diamond", "fa fa-paper-plane-o"];
+const allCards = ["fa-cubes", "fa-bomb", "fa-diamond", "fa-paper-plane-o", "fa-cube", "fa-bicycle",
+"fa-leaf", "fa-bolt", "fa-cubes", "fa-bomb", "fa-leaf", "fa-bolt", "fa-bicycle", "fa-cube", "fa-diamond", "fa-paper-plane-o"];
 
 
 let clickedCards = [];
@@ -12,31 +12,45 @@ const deck = document.querySelector(".deck")
 
 for (let i=0;i<16;i++) {
     let makeCard = document.createElement("li");
+    makeCard.addEventListener('click', clickingCards);
     makeCard.className="card";
-    makeCard.innerHTML = `<i class = “fa ${allCards[i]}”></i>`
+    makeCard.innerHTML = `<i class = "fa ${allCards[i]}"></i>`
     deck.appendChild(makeCard);
 }
 shuffle(allCards);
 
-document.addEventListener('click', clickingCards);
+
 
 function clickingCards(){
-const makeCard = document.getElementsByTagName('li')
+const makeCard = this
+checkCards(makeCard)
+innerHTML(makeCard)
+}
 
+function checkCards(makeCard){
 if (clickedCards.length ===0){
-    makeCard.classList.add("opwn", "show");
-    clickedCards.push(this);
-    }
-if (clickedCards.length ===1){
     makeCard.classList.add("open", "show");
     clickedCards.push(this);
     }
-if (this.innerHTML === clickedCards[0].innerHTML){
+
+if (clickedCards.length !==0 && clickedCards.length <=2){
+    makeCard.classList.add("open", "show");
+    clickedCards.push(this);
+    }
+
+else{
+    if (clickedCards.length >=3){
+     makeCard.classList.add("close", "noShow");
+     const clearArray = clickedCards.splice(0,16);
+ }
+
+function innerHTML(makeCard){
+if (clickedCards [1].innerHTML === clickedCards[2].innerHTML){
     makeCard.classList.add("matched");
     console.log("This is a match");
     }
     else
-    if (clickedCards.length ===2){
+    {
     console.log ("This is not a match");
     }
 }
