@@ -8,14 +8,16 @@ const allCards = ["fa-cubes", "fa-bomb", "fa-diamond", "fa-paper-plane-o", "fa-c
 let clickedCards = [];
 
 const deck = document.querySelector(".deck")
+
+
 //create the cards
 
 for (let i=0;i<16;i++) {
     let makeCard = document.createElement("li");
-    makeCard.addEventListener('click', clickingCards);
     makeCard.className="card";
     makeCard.innerHTML = `<i class = "fa ${allCards[i]}"></i>`
     deck.appendChild(makeCard);
+    makeCard.addEventListener('click', clickingCards);
 }
 shuffle(allCards);
 
@@ -23,36 +25,49 @@ shuffle(allCards);
 
 function clickingCards(){
 const makeCard = this
-checkCards(makeCard)
-innerHTML(makeCard)
+firstCard(makeCard)
+
+checkingMatch(makeCard)
+
 }
 
-function checkCards(makeCard){
+function firstCard(makeCard){
 if (clickedCards.length ===0){
     makeCard.classList.add("open", "show");
-    clickedCards.push(this);
+    clickedCards.push(makeCard);
+    console.log("Pick another card");
     }
-
-if (clickedCards.length !==0 && clickedCards.length <=2){
+    else if (clickedCards.length ===1 && clickedCards.length !==0){
     makeCard.classList.add("open", "show");
-    clickedCards.push(this);
+    /*makeCard.classList.add("card");*/
+    }
+}
+
+function secondCard(makeCard){
+if (clickedCards.length !==0 && clickedCards.length <2){
+    makeCard.classList.add("open", "show");
+    clickedCards.push(makeCard);
     }
 
-else{
-    if (clickedCards.length >=3){
-     makeCard.classList.add("close", "noShow");
-     const clearArray = clickedCards.splice(0,16);
- }
-
-function innerHTML(makeCard){
-if (clickedCards [1].innerHTML === clickedCards[2].innerHTML){
+    else if (clickedCards.length ===2){
+      checkingMatch(clickedCards);
+     makeCard.classList.add("card");
+     clickedCards = [];
+    }
+}
+function checkingMatch(makeCard){
+  let checkFirstcard.innerHTML = clickedCards[0]
+  let checkSecondcard.innerHTML = clickedCards[1];
+if (clickedCards[0] === clickedCards[1] && clickedCards.length ===2){
     makeCard.classList.add("matched");
     console.log("This is a match");
     }
-    else
-    {
+    else if (clickedCards[0] !== clickedCards[1] && clickedCards.length ===2){
     console.log ("This is not a match");
-    }
+    clickedCards = [];
+  }
+
+
 }
 
 
