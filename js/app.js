@@ -25,46 +25,45 @@ shuffle(allCards);
 
 function clickingCards(){
 const makeCard = this
-firstCard(makeCard)
+pickAcard(makeCard)
+/*clickingCards(makeCard);
 
-checkingMatch(makeCard)
+/*checkingMatch(makeCard)*/
 
 }
 
-function firstCard(makeCard){
+function pickAcard(makeCard){
 if (clickedCards.length ===0){
     makeCard.classList.add("open", "show");
     clickedCards.push(makeCard);
     console.log("Pick another card");
     }
-    else if (clickedCards.length ===1 && clickedCards.length !==0){
-    makeCard.classList.add("open", "show");
-    /*makeCard.classList.add("card");*/
+    else if (makeCard.innerHTML.contains("show"){
+      console.log("You have already selected this card");
+      clickedCards.pop(makecard);
     }
-}
-
-function secondCard(makeCard){
-if (clickedCards.length !==0 && clickedCards.length <2){
-    makeCard.classList.add("open", "show");
-    clickedCards.push(makeCard);
+    else if ((clickedCards.length ===1){
+      makeCard.classList.add("open", "show");
+      clickedCards.push(makeCard);
     }
-
-    else if (clickedCards.length ===2){
+      /*else if (clickedCards.length >2){
       checkingMatch(clickedCards);
-     makeCard.classList.add("card");
-     clickedCards = [];
-    }
+      makeCard.classList.add("card");
+      console.log("You can only pick two cards");
+    }*/
+
 }
+
 function checkingMatch(makeCard){
-  let checkFirstcard.innerHTML = clickedCards[0]
-  let checkSecondcard.innerHTML = clickedCards[1];
-if (clickedCards[0] === clickedCards[1] && clickedCards.length ===2){
+  let checkFirstcard = clickedCards[0]
+  let checkSecondcard = clickedCards[1];
+if (checkFirstcard === checkSecondcard && clickedCards.length ===2){
     makeCard.classList.add("matched");
     console.log("This is a match");
     }
-    else if (clickedCards[0] !== clickedCards[1] && clickedCards.length ===2){
+    else if (checkFirstcard !== checkSecondcard && clickedCards.length ===2){
     console.log ("This is not a match");
-    clickedCards = [];
+    /*clickedCards = [];*/
   }
 
 
